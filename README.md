@@ -12,6 +12,32 @@ cmake -S . -B build
 cmake --build build
 ```
 
+## DEB-пакет (Debian, Ubuntu, Kubuntu)
+
+Сборка пакета требует также `dpkg-dev` и `file`:
+
+```sh
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+cpack --config build/CPackConfig.cmake -G DEB -B build/packages
+```
+
+CPack определяет архитектуру и необходимые версии библиотек по системе сборки.
+Пакет для более новой системы может не устанавливаться на старую; для поддержки
+старых дистрибутивов собирайте пакет в самой старой поддерживаемой системе.
+
+Установка загруженного пакета (пример для amd64):
+
+```sh
+sudo apt install ./preliminary-monty_0.1.0-1_amd64.deb
+preliminary_monty --load-atr-image /путь/к/game.atr --play
+```
+
+После первого импорта запускайте `preliminary_monty --play`.
+Пакет устанавливает исполняемый файл в `/usr/bin` и документацию в
+`/usr/share/doc/preliminary-monty`; оригинальные ресурсы в него не входят.
+Личная база данных создаётся при импорте от имени обычного пользователя.
+
 ## Работа в VS Code (Linux)
 
 Откройте именно каталог `PreliminaryMonty` через **File → Open Folder**.
