@@ -1,0 +1,81 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Play",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/preliminary_monty",
+      "args": [
+        "--play"
+      ],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Build",
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty printing",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
+      "name": "Play (always light)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/preliminary_monty",
+      "args": [
+        "--always-light",
+        "--play"
+      ],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Build",
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty printing",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
+      "name": "Import ATR and play",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/preliminary_monty",
+      "args": [
+        "--load-atr-image",
+        "${input:atrImage}",
+        "--play"
+      ],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Build",
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty printing",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "id": "atrImage",
+      "type": "promptString",
+      "description": "Полный путь к вашему оригинальному ATR-образу (без кавычек)"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+# Local CMake build.
+/build/
+
+# A user-imported database may be kept beside the executable.
+/mazes.sqlite3
+/mazes.sqlite3-journal
+/mazes.sqlite3-wal
+/mazes.sqlite3-shm

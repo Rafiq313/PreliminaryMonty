@@ -1,0 +1,119 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Configure",
+      "type": "process",
+      "command": "cmake",
+      "args": [
+        "-S",
+        "${workspaceFolder}",
+        "-B",
+        "${workspaceFolder}/build",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build",
+      "type": "process",
+      "command": "cmake",
+      "args": [
+        "--build",
+        "${workspaceFolder}/build",
+        "--parallel"
+      ],
+      "dependsOn": "Configure",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Play",
+      "type": "process",
+      "command": "${workspaceFolder}/build/preliminary_monty",
+      "args": [
+        "--play"
+      ],
+      "dependsOn": "Build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Play (always light)",
+      "type": "process",
+      "command": "${workspaceFolder}/build/preliminary_monty",
+      "args": [
+        "--always-light",
+        "--play"
+      ],
+      "dependsOn": "Build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Import ATR",
+      "type": "process",
+      "command": "${workspaceFolder}/build/preliminary_monty",
+      "args": [
+        "--load-atr-image",
+        "${input:atrImage}"
+      ],
+      "dependsOn": "Build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Import ATR and play",
+      "type": "process",
+      "command": "${workspaceFolder}/build/preliminary_monty",
+      "args": [
+        "--load-atr-image",
+        "${input:atrImage}",
+        "--play"
+      ],
+      "dependsOn": "Build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "List mazes",
+      "type": "process",
+      "command": "${workspaceFolder}/build/preliminary_monty",
+      "args": [
+        "--list-mazes"
+      ],
+      "dependsOn": "Build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "atrImage",
+      "type": "promptString",
+      "description": "Полный путь к вашему оригинальному ATR-образу (без кавычек)"
+    }
+  ]
+}
